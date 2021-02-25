@@ -29,7 +29,7 @@ for index, rows in df.iterrows():
     t = ax.trainingExample(label, my_list)
     trainingData.append(t)
 
-someTree = dt.decisionTree(trainingData, 6)
+someTree = dt.decisionTree(trainingData, 2)
 
 someTree.train()
 
