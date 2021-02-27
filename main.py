@@ -51,12 +51,10 @@ for x in range(3,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-tant.plotErrors(trainingErrorList1, testErrorList1, 1)
+tandt.plotErrors(trainingErrorList1, testErrorList1, 1)
     
 # Display the Training and Testing Errors
-trainingErrorList1.insert(0, 'Training Error')
-testErrorList1.insert(0, 'Test Error')
-print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList1, testErrorList1]))
+tandt.displayTable(trainingErrorList1,testErrorList1)
 
 
 ## Monks-2
@@ -86,12 +84,10 @@ for x in range(1,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-ptant.plotErrors(trainingErrorList2, testErrorList2, 2)
+tandt.plotErrors(trainingErrorList2, testErrorList2, 2)
 
 # Display the Training and Testing Errors
-trainingErrorList2.insert(0, 'Training Error')
-testErrorList2.insert(0, 'Test Error')
-print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList2, testErrorList2]))
+tandt.displayTable(trainingErrorList2,testErrorList2)
 
 ## Monks-3
 
@@ -120,9 +116,7 @@ for x in range(1,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-tant.plotErrors(trainingErrorList3, testErrorList3, 3) 
+tandt.plotErrors(trainingErrorList3, testErrorList3, 3) 
 
 # Display the Training and Testing Errors
-trainingErrorList3.insert(0, 'Training Error')
-testErrorList3.insert(0, 'Test Error')
-print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList3, testErrorList3]))
+tandt.displayTable(trainingErrorList3,testErrorList3)
