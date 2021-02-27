@@ -46,8 +46,9 @@ def findResults(testResult, makeConfusion):
                 FP+=1
             else:
                 FN+=1
-
-    print('Error: ',(numMiss*100)/(numMiss+numHit))
+    
+    error = (numMiss*100)/(numMiss+numHit)
+    print('Error: ',error)
 
     # If makeConfusion = 1, make a confusion matrix
     if makeConfusion==1:
@@ -61,6 +62,7 @@ def findResults(testResult, makeConfusion):
         print(TP, '|', FN)
         print(FP, '|', TN)
 
+    return error
 
 # function to create the decision tree and find the training and test errors
 def trainAndTest(trainingData, x, testData, makeConfusion):
@@ -76,13 +78,15 @@ def trainAndTest(trainingData, x, testData, makeConfusion):
     # find training error and make confusion matrix if needed
     testResult = someTree.testBatch(trainingData)
     print('Results for Training Data: ')
-    findResults(testResult, makeConfusion)
+    trainingError = findResults(testResult, makeConfusion)
     
     print('\n'*3)
     
     # find test error and make confusion matrix if needed
     testResult2 = someTree.testBatch(testData)
     print('Results for Test Data: ')
-    findResults(testResult2, makeConfusion)
-
+    testError = findResults(testResult2, makeConfusion)
     
+    List = [trainingError, testError] 
+    
+    return List
