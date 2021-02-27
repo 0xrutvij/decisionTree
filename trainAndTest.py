@@ -75,7 +75,7 @@ def trainAndTest(trainingData, x, testData, makeReport):
     someTree.train()
 
     if makeReport == 1:
-        print(Decision Tree of Depth', x)
+        print('Decision Tree of Depth', x)
         print(str(someTree))
 
     # find training error and make confusion matrix if needed
