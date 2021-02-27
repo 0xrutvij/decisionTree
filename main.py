@@ -2,8 +2,6 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
-import matplotlib.pyplot as plt
-import numpy as np
 from tabulate import tabulate
 
 '''
@@ -53,13 +51,7 @@ for x in range(3,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-plt.plot(np.arange(1,11,1),trainingErrorList1, label = 'Training Error')
-plt.plot(np.arange(1,11,1),testErrorList1, label = 'Test Error')
-plt.xlabel('Depth') 
-plt.ylabel('Errors')
-plt.title('Training and Testing Error Curves for Monk-1')   
-plt.legend()
-plt.show()
+tant.plotErrors(trainingErrorList1, testErrorList1, 1)
     
 # Display the Training and Testing Errors
 trainingErrorList1.insert(0, 'Training Error')
@@ -94,13 +86,7 @@ for x in range(1,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-plt.plot(np.arange(1,11,1),trainingErrorList2, label = 'Training Error')
-plt.plot(np.arange(1,11,1),testErrorList2, label = 'Test Error')
-plt.xlabel('Depth') 
-plt.ylabel('Errors')
-plt.title('Training and Testing Error Curves for Monk-2')   
-plt.legend()
-plt.show()
+ptant.plotErrors(trainingErrorList2, testErrorList2, 2)
 
 # Display the Training and Testing Errors
 trainingErrorList2.insert(0, 'Training Error')
@@ -134,13 +120,7 @@ for x in range(1,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-plt.plot(np.arange(1,11,1),trainingErrorList3, label = 'Training Error')
-plt.plot(np.arange(1,11,1),testErrorList3, label = 'Test Error')
-plt.xlabel('Depth') 
-plt.ylabel('Errors')
-plt.title('Training and Testing Error Curves for Monk-3')   
-plt.legend()
-plt.show()   
+tant.plotErrors(trainingErrorList3, testErrorList3, 3) 
 
 # Display the Training and Testing Errors
 trainingErrorList3.insert(0, 'Training Error')
