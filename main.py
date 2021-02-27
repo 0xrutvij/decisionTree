@@ -2,7 +2,8 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
-import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
 from tabulate import tabulate
 
 '''
@@ -50,13 +51,21 @@ for x in range(3,11):
     trainingErrorList1.append(errors[0])
     testErrorList1.append(errors[1])
 
+# plot plotting training and testing error curves together
+# with tree depth on the x-axis and error on the y-axis
+plt.plot(np.arange(1,11,1),trainingErrorList1, label = 'Training Error')
+plt.plot(np.arange(1,11,1),testErrorList1, label = 'Test Error')
+plt.xlabel('Depth') 
+plt.ylabel('Errors')
+plt.title('Training and Testing Error Curves for Monk-1')   
+plt.legend()
+plt.show()
+    
 # Display the Training and Testing Errors
 trainingErrorList1.insert(0, 'Training Error')
 testErrorList1.insert(0, 'Test Error')
 print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList1, testErrorList1]))
 
-# plot 
-#mlp.pyplot.plot(trainingErrorList1)
 
 ## Monks-2
 
@@ -82,7 +91,17 @@ for x in range(1,11):
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
     trainingErrorList2.append(errors[0])
     testErrorList2.append(errors[1])
-    
+
+# plot plotting training and testing error curves together
+# with tree depth on the x-axis and error on the y-axis
+plt.plot(np.arange(1,11,1),trainingErrorList2, label = 'Training Error')
+plt.plot(np.arange(1,11,1),testErrorList2, label = 'Test Error')
+plt.xlabel('Depth') 
+plt.ylabel('Errors')
+plt.title('Training and Testing Error Curves for Monk-2')   
+plt.legend()
+plt.show()
+
 # Display the Training and Testing Errors
 trainingErrorList2.insert(0, 'Training Error')
 testErrorList2.insert(0, 'Test Error')
@@ -112,7 +131,17 @@ for x in range(1,11):
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
     trainingErrorList3.append(errors[0])
     testErrorList3.append(errors[1])
-    
+
+# plot plotting training and testing error curves together
+# with tree depth on the x-axis and error on the y-axis
+plt.plot(np.arange(1,11,1),trainingErrorList3, label = 'Training Error')
+plt.plot(np.arange(1,11,1),testErrorList3, label = 'Test Error')
+plt.xlabel('Depth') 
+plt.ylabel('Errors')
+plt.title('Training and Testing Error Curves for Monk-3')   
+plt.legend()
+plt.show()   
+
 # Display the Training and Testing Errors
 trainingErrorList3.insert(0, 'Training Error')
 testErrorList3.insert(0, 'Test Error')
