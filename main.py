@@ -2,7 +2,6 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
-from tabulate import tabulate
 
 '''
 lst = []
@@ -51,7 +50,7 @@ for x in range(3,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-tandt.plotErrors(trainingErrorList1, testErrorList1, 1)
+tandt.plotErrors(trainingErrorList1, testErrorList1, '1')
     
 # Display the Training and Testing Errors
 tandt.displayTable(trainingErrorList1,testErrorList1)
@@ -84,7 +83,7 @@ for x in range(1,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-tandt.plotErrors(trainingErrorList2, testErrorList2, 2)
+tandt.plotErrors(trainingErrorList2, testErrorList2, '2')
 
 # Display the Training and Testing Errors
 tandt.displayTable(trainingErrorList2,testErrorList2)
@@ -116,7 +115,7 @@ for x in range(1,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-tandt.plotErrors(trainingErrorList3, testErrorList3, 3) 
+tandt.plotErrors(trainingErrorList3, testErrorList3, '3')
 
 # Display the Training and Testing Errors
 tandt.displayTable(trainingErrorList3,testErrorList3)
