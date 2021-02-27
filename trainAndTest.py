@@ -3,6 +3,7 @@ import decisionTree as dt
 import auxiliary as ax
 import matplotlib.pyplot as plt
 import numpy as np
+from tabulate import tabulate
 
 # function to create the training data
 def createTrainingData(trainingData, df):
@@ -103,7 +104,8 @@ def plotErrors(trainingErrorList, testErrorList, monkNum):
     plt.plot(np.arange(1,11,1),testErrorList, label = 'Test Error')
     plt.xlabel('Depth') 
     plt.ylabel('Errors')
-    plt.title('Training and Testing Error Curves for Monk', monkNum)   
+    title = 'Training and Testing Error Curves for Monk' + monkNum
+    plt.title(title)     
     plt.legend()
     plt.show()
     
