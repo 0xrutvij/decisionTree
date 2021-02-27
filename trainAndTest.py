@@ -64,7 +64,9 @@ def findResults(testResult, makeConfusion):
     return error
 
 # function to create the decision tree and find the training and test errors
-def trainAndTest(trainingData, x, testData, makeConfusion):
+# makeReport = 1 indicates that the tree needs to be printed and 
+# a confusion matrix should be produced
+def trainAndTest(trainingData, x, testData, makeReport):
 
     # create the decision tree
     someTree = dt.decisionTree(trainingData, x)
@@ -72,19 +74,21 @@ def trainAndTest(trainingData, x, testData, makeConfusion):
     # train the tree
     someTree.train()
 
-    print(str(someTree))
+    if makeReport == 1:
+        print(Decision Tree of Depth', x)
+        print(str(someTree))
 
     # find training error and make confusion matrix if needed
     testResult = someTree.testBatch(trainingData)
-    if makeConfusion ==1:
+    if makeReport ==1:
         print('The Confusion Maxtrix on the Training Set for Depth of ', x, ':')
-    trainingError = findResults(testResult, makeConfusion)
-  
+    trainingError = findResults(testResult, makeReport)
+        
     # find test error and make confusion matrix if needed
     testResult2 = someTree.testBatch(testData)
-    if makeConfusion ==1:
+    if makeReport ==1:
         print('The Confusion Maxtrix on the Test Set for Depth of ', x, ':')
-    testError = findResults(testResult2, makeConfusion)
+    testError = findResults(testResult2, makeReport)
     
     List = [trainingError, testError] 
     
