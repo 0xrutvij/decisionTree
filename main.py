@@ -3,6 +3,7 @@ import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
 import matplotlib as mpl
+from tabulate import tabulate
 
 '''
 lst = []
@@ -49,6 +50,9 @@ for x in range(3,11):
     trainingErrorList1.append(errors[0])
     testErrorList1.append(errors[1])
 
+# Display the Training and Testing Errors
+print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList1.insert(0, 'Training Error'), testErrorList1.insert(0, 'Test Error')]))
+
 # plot 
 #mlp.pyplot.plot(trainingErrorList1)
 
@@ -76,6 +80,9 @@ for x in range(1,11):
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
     trainingErrorList2.append(errors[0])
     testErrorList2.append(errors[1])
+    
+# Display the Training and Testing Errors
+print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10]trainingErrorList2.insert(0, 'Training Error'), testErrorList2.insert(0, 'Test Error')]))
 
 ## Monks-3
 
@@ -101,3 +108,6 @@ for x in range(1,11):
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
     trainingErrorList3.append(errors[0])
     testErrorList3.append(errors[1])
+    
+# Display the Training and Testing Errors
+print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList3.insert(0, 'Training Error'), testErrorList3.insert(0, 'Test Error')]))
