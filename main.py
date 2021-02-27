@@ -39,7 +39,7 @@ testErrorList1 = []
 print('MONK Problem 1: ')
 for x in range(1,3):
     # create the trees of various depths
-    errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix
+    errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix and print tree
     trainingErrorList1.append(errors[0])
     testErrorList1.append(errors[1])
     
