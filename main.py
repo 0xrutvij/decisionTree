@@ -51,7 +51,9 @@ for x in range(3,11):
     testErrorList1.append(errors[1])
 
 # Display the Training and Testing Errors
-print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList1.insert(0, 'Training Error'), testErrorList1.insert(0, 'Test Error')]))
+trainingErrorList1.insert(0, 'Training Error')
+testErrorList1.insert(0, 'Test Error')
+print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList1, testErrorList1]))
 
 # plot 
 #mlp.pyplot.plot(trainingErrorList1)
@@ -82,7 +84,9 @@ for x in range(1,11):
     testErrorList2.append(errors[1])
     
 # Display the Training and Testing Errors
-print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10]trainingErrorList2.insert(0, 'Training Error'), testErrorList2.insert(0, 'Test Error')]))
+trainingErrorList2.insert(0, 'Training Error')
+testErrorList2.insert(0, 'Test Error')
+print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList2, testErrorList2]))
 
 ## Monks-3
 
@@ -110,4 +114,6 @@ for x in range(1,11):
     testErrorList3.append(errors[1])
     
 # Display the Training and Testing Errors
-print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList3.insert(0, 'Training Error'), testErrorList3.insert(0, 'Test Error')]))
+trainingErrorList3.insert(0, 'Training Error')
+testErrorList3.insert(0, 'Test Error')
+print(tabulate([['Depth',1,2,3,4,5,6,7,8,9,10], trainingErrorList3, testErrorList3]))
