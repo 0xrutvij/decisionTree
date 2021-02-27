@@ -93,3 +93,14 @@ def trainAndTest(trainingData, x, testData, makeReport):
     List = [trainingError, testError] 
     
     return List
+
+# plot plotting training and testing error curves together
+# with tree depth on the x-axis and error on the y-axis
+def plotErrors(trainingErrorList, testErrorList, monkNum):
+    plt.plot(np.arange(1,11,1),trainingErrorList, label = 'Training Error')
+    plt.plot(np.arange(1,11,1),testErrorList, label = 'Test Error')
+    plt.xlabel('Depth') 
+    plt.ylabel('Errors')
+    plt.title('Training and Testing Error Curves for Monk', monkNum)   
+    plt.legend()
+    plt.show()
