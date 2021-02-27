@@ -47,7 +47,7 @@ def findResults(testResult, makeConfusion):
             else:
                 FN+=1
 
-    print('Error',(numMiss*100)/(numMiss+numHit))
+    print('Error: ',(numMiss*100)/(numMiss+numHit))
 
     # If makeConfusion = 1, make a confusion matrix
     if makeConfusion==1:
