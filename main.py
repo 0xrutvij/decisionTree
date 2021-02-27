@@ -35,6 +35,7 @@ trainingErrorList1 = []
 testErrorList1 = []
 
 # create trees of depth 1 and 2 for monks-1
+print('MONK Problem 1: ')
 for x in range(1,3):
     # create the trees of various depths
     errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix
@@ -67,6 +68,7 @@ trainingErrorList2 = []
 testErrorList2 = []
 
 # for depth = 1,...,10 create tree for monks-2
+print('MONK Problem 2: ')
 for x in range(1,11):
     # create the trees of various depths
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
@@ -89,6 +91,7 @@ trainingErrorList3 = []
 testErrorList3 = []
 
 # for depth = 1,...,10 create tree for monks-3
+print('MONK Problem 3: ')
 for x in range(1,11):
     # create the trees of various depths
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
