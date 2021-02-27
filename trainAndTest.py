@@ -2,6 +2,7 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 
+# function to create the training data
 def createTrainingData(trainingData):
     for index, rows in df.iterrows():
 
@@ -12,6 +13,7 @@ def createTrainingData(trainingData):
         
     return trainingData
 
+# function to create the test data
 def createTestData(testData):
     
     for index, rows in df.iterrows():
@@ -21,18 +23,9 @@ def createTestData(testData):
         testData.append(t)
     
     return testData 
+
+def findPosNegValues(testResult):
     
-
-def trainAndTest(trainingData, x, testData):
-
-    someTree = dt.decisionTree(trainingData, x)
-
-    someTree.train()
-
-    print(str(someTree))
-
-    testResult = someTree.testBatch(trainingData)
-
     numMiss = 0
     numHit = 0
     FN = TN = TP = FP = 0
@@ -52,7 +45,7 @@ def trainAndTest(trainingData, x, testData):
             else:
                 FN+=1
 
-    print('Error percent:', (numMiss*100)/(numMiss+numHit))
+    print('Training Error Percent:', (numMiss*100)/(numMiss+numHit))
 
 
     '''
@@ -88,7 +81,7 @@ def trainAndTest(trainingData, x, testData):
             else:
                 FN+=1
 
-    print('Error percent (test data):', (numMiss*100)/(numMiss+numHit))
+    print('Test Error Percent:', (numMiss*100)/(numMiss+numHit))
 
 
     '''
@@ -100,3 +93,17 @@ def trainAndTest(trainingData, x, testData):
 
     print(TP, '|', FN)
     print(FP, '|', TN)
+    
+
+# function to create the decision tree and find the training and test errors
+def trainAndTest(trainingData, x, testData):
+
+    someTree = dt.decisionTree(trainingData, x)
+
+    someTree.train()
+
+    print(str(someTree))
+
+    testResult = someTree.testBatch(trainingData)
+
+    
