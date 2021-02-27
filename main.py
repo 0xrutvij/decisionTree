@@ -30,16 +30,22 @@ df = pd.read_csv('./csv/monks-1.test.csv')
 testData = []
 testData = tandt.createTestData(testData, df)
 
+trainingErrorList1 = []
+testErrorList1 = []
+
 # create trees of depth 1 and 2 for monks-1
 for x in range(1,3):
     # create the trees of various depths
-    tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix
+    errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix
+    trainingErrorList1.append(errors[0])
+    testErrorList1.append(errors[1])
     
 # for depth = 3,...,10 create tree for monks-1
 for x in range(3,11):
     # create the trees of various depths
-    tandt.trainAndTest(trainingData, x, testData, 0)
-    
+    errors = tandt.trainAndTest(trainingData, x, testData, 0)
+    trainingErrorList1.append(errors[0])
+    testErrorList1.append(errors[1])
 
 ## Monks-2
 
@@ -53,11 +59,15 @@ df = pd.read_csv('./csv/monks-2.test.csv')
 testData = []
 testData = tandt.createTestData(testData, df)
 
+trainingErrorList2 = []
+testErrorList2 = []
+
 # for depth = 1,...,10 create tree for monks-2
 for x in range(1,11):
     # create the trees of various depths
-    tandt.trainAndTest(trainingData, x, testData, 0)
- 
+    errors = tandt.trainAndTest(trainingData, x, testData, 0)
+    trainingErrorList2.append(errors[0])
+    testErrorList2.append(errors[1])
 
 ## Monks-3
 
@@ -71,7 +81,12 @@ df = pd.read_csv('./csv/monks-3.test.csv')
 testData = []
 testData = tandt.createTestData(testData, df)
 
+trainingErrorList3 = []
+testErrorList3 = []
+
 # for depth = 1,...,10 create tree for monks-3
 for x in range(1,11):
     # create the trees of various depths
-    tandt.trainAndTest(trainingData, x, testData, 0)
+    errors = tandt.trainAndTest(trainingData, x, testData, 0)
+    trainingErrorList3.append(errors[0])
+    testErrorList3.append(errors[1])
