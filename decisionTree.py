@@ -12,9 +12,11 @@ class decisionTree:
 
         #the root node
         self.root = None
+        
         #a var to hold the list of trainingExamples
         self.trainingData = t #a list of training examples
         self.maxDepth = maxDepth
+        
         #since all examples are of the same length, we check the first
         #example in the list to find how many features does our examples have
         self.numFeatures = len(t[0].featureVector)
