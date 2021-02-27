@@ -67,7 +67,7 @@ testData = tandt.createTestData(testData, df)
 trainingErrorList2 = []
 testErrorList2 = []
 
-print('/n'*3)
+print('\n'*3)
 
 # for depth = 1,...,10 create tree for monks-2
 print('MONK Problem 2: ')
@@ -92,7 +92,7 @@ testData = tandt.createTestData(testData, df)
 trainingErrorList3 = []
 testErrorList3 = []
 
-print('/n'*3)
+print('\n'*3)
 
 # for depth = 1,...,10 create tree for monks-3
 print('MONK Problem 3: ')
