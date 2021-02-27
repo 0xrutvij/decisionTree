@@ -2,7 +2,28 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 
-def trainAndTest(trainingData, x):
+def createTrainingData(trainingData):
+    for index, rows in df.iterrows():
+
+        my_list = [rows.f1, rows.f2, rows.f3, rows.f4, rows.f5, rows.f6,]
+        label = rows.label
+        t = ax.trainingExample(label, my_list)
+        trainingData.append(t)
+        
+    return trainingData
+
+def createTestData(testData):
+    
+    for index, rows in df.iterrows():
+        my_list = [rows.f1, rows.f2, rows.f3, rows.f4, rows.f5, rows.f6,]
+        label = rows.label
+        t = ax.trainingExample(label, my_list)
+        testData.append(t)
+    
+    return testData 
+    
+
+def trainAndTest(trainingData, x, testData):
 
     someTree = dt.decisionTree(trainingData, x)
 
@@ -45,18 +66,6 @@ def trainAndTest(trainingData, x):
     print(FP, '|', TN)
 
     print('\n'*3)
-
-    df = pd.read_csv('./csv/monks-1.test.csv')
-
-
-    testData = []
-
-    for index, rows in df.iterrows():
-
-        my_list = [rows.f1, rows.f2, rows.f3, rows.f4, rows.f5, rows.f6,]
-        label = rows.label
-        t = ax.trainingExample(label, my_list)
-        testData.append(t)
 
     testResult2 = someTree.testBatch(testData)
 
