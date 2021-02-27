@@ -80,7 +80,7 @@ def trainAndTest(trainingData, x, testData, makeConfusion):
     print('Results for Training Data for Depth of', x, ':')
     trainingError = findResults(testResult, makeConfusion)
     
-    print('\n'*3)
+    print('\n')
     
     # find test error and make confusion matrix if needed
     testResult2 = someTree.testBatch(testData)
