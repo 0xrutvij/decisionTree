@@ -1,6 +1,7 @@
 import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
+import trainAndTest as tandt
 
 '''
 lst = []
@@ -17,105 +18,60 @@ lst.append(trainingExample(0, [1, 2, 3]))
 lst.append(trainingExample(0, [1, 2, 3]))
 '''
 
+## Monks-1
+
+# create the training data for monks-1
 df = pd.read_csv('./csv/monks-1.train.csv')
-
-
 trainingData = []
+trainingData = tandt.createTrainingData(trainingData, df)
 
-for index, rows in df.iterrows():
+# create the test data for monks-1
+df = pd.read_csv('./csv/monks-1.test.csv')
+testData = []
+testData = tandt.createTestData(testData, df)
 
-    my_list = [rows.f1, rows.f2, rows.f3, rows.f4, rows.f5, rows.f6,]
-    label = rows.label
-    t = ax.trainingExample(label, my_list)
-    trainingData.append(t)
-
-# for depth = 1,...,10
-for x in range(1,11):
+# create trees of depth 1 and 2 for monks-1
+for x in range(1,3):
+    # create the trees of various depths
+    tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix
     
-    someTree = dt.decisionTree(trainingData, x)
+# for depth = 3,...,10 create tree for monks-1
+for x in range(3,11):
+    # create the trees of various depths
+    tandt.trainAndTest(trainingData, x, testData, 0)
+    
 
-    someTree.train()
+## Monks-2
 
-    print(str(someTree))
+# create the training data for monks-2
+df = pd.read_csv('./csv/monks-2.train.csv')
+trainingData = []
+trainingData = tandt.createTrainingData(trainingData, df)
 
-    testResult = someTree.testBatch(trainingData)
+# create the test data for monks-2
+df = pd.read_csv('./csv/monks-2.test.csv')
+testData = []
+testData = tandt.createTestData(testData, df)
 
-    numMiss = 0
-    numHit = 0
-    FN = TN = TP = FP = 0
+# for depth = 1,...,10 create tree for monks-2
+for x in range(1,11):
+    # create the trees of various depths
+    tandt.trainAndTest(trainingData, x, testData, 0)
+ 
 
-    for x in testResult:
+## Monks-3
 
-        if(x[2]):
-            numHit+=1
-            if(x[0]):
-                TP+=1
-            else:
-                TN+=1
-        else:
-            numMiss+=1
-            if(x[0]):
-                FP+=1
-            else:
-                FN+=1
+# create the training data for monks-3
+df = pd.read_csv('./csv/monks-3.train.csv')
+trainingData = []
+trainingData = tandt.createTrainingData(trainingData, df)
 
-    print('Error percent:', (numMiss*100)/(numMiss+numHit))
+# create the test data for monks-3
+df = pd.read_csv('./csv/monks-3.test.csv')
+testData = []
+testData = tandt.createTestData(testData, df)
 
-
-    '''
-        PV ->
-    AV    _P_ _N_
-    | |P[TP][FN]      2|1
-    V |N[FP][TN]      3|4
-    '''
-
-    print(TP, '|', FN)
-    print(FP, '|', TN)
-
-    print('\n'*3)
-
-    df = pd.read_csv('./csv/monks-1.test.csv')
-
-
-    testData = []
-
-    for index, rows in df.iterrows():
-
-        my_list = [rows.f1, rows.f2, rows.f3, rows.f4, rows.f5, rows.f6,]
-        label = rows.label
-        t = ax.trainingExample(label, my_list)
-        testData.append(t)
-
-    testResult2 = someTree.testBatch(testData)
-
-    numMiss = 0
-    numHit = 0
-    FN = TN = TP = FP = 0
-
-    for x in testResult2:
-
-        if(x[2]):
-            numHit+=1
-            if(x[0]):
-                TP+=1
-            else:
-                TN+=1
-        else:
-            numMiss+=1
-            if(x[0]):
-                FP+=1
-            else:
-                FN+=1
-
-    print('Error percent (test data):', (numMiss*100)/(numMiss+numHit))
-
-
-    '''
-        PV ->
-    AV    _P_ _N_
-    | |P[TP][FN]      2|1
-     V |N[FP][TN]      3|4
-    '''
-
-    print(TP, '|', FN)
-    print(FP, '|', TN)
+# for depth = 1,...,10 create tree for monks-3
+for x in range(1,11):
+    # create the trees of various depths
+    tandt.trainAndTest(trainingData, x, testData, 0)
