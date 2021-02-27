@@ -2,6 +2,7 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
+import matplotlib as mpl
 
 '''
 lst = []
@@ -46,6 +47,9 @@ for x in range(3,11):
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
     trainingErrorList1.append(errors[0])
     testErrorList1.append(errors[1])
+
+# plot 
+#mlp.pyplot.plot(trainingErrorList1)
 
 ## Monks-2
 
