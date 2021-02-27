@@ -48,10 +48,10 @@ def findResults(testResult, makeConfusion):
                 FN+=1
     
     error = (numMiss*100)/(numMiss+numHit)
-    print('Error: ',error)
 
     # If makeConfusion = 1, make a confusion matrix
     if makeConfusion==1:
+        print('The Confusion Maxtrix:')
         '''
             PV ->
         AV    _P_ _N_
@@ -77,12 +77,10 @@ def trainAndTest(trainingData, x, testData, makeConfusion):
 
     # find training error and make confusion matrix if needed
     testResult = someTree.testBatch(trainingData)
-    print('Results for Training Data for Depth of', x, ':')
     trainingError = findResults(testResult, makeConfusion)
   
     # find test error and make confusion matrix if needed
     testResult2 = someTree.testBatch(testData)
-    print('Results for Test Data for Depth of', x, ':')
     testError = findResults(testResult2, makeConfusion)
     
     List = [trainingError, testError] 
