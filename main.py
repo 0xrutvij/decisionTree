@@ -7,7 +7,7 @@ import sys
 if __name__ == "__main__":
    sys.stdout = open('output.txt', 'w')
 
-# For parts a) and b)
+## For parts a) and b)
    
 for monkNum in range (1, 4):
     df = pd.read_csv('./csv/monks-'+str(monkNum)+'.train.csv')
@@ -19,38 +19,58 @@ for monkNum in range (1, 4):
     testData = []
     testData = tandt.createTestData(testData, df)
 
-    trainingErrorList1 = []
-    testErrorList1 = []
+    trainingErrorList = []
+    testErrorList = []
 
     # create trees of depth 1 and 2 for monks-1to3
     print('MONK Problem '+str(monkNum)+': ')
     for x in range(1,3):
         # create the trees of various depths
         errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix and print tree
-        trainingErrorList1.append(errors[0])
-        testErrorList1.append(errors[1])
+        trainingErrorList.append(errors[0])
+        testErrorList.append(errors[1])
 
     # for depth = 3,...,10 create tree for monks-1to3
     for x in range(3,11):
         # create the trees of various depths
         errors = tandt.trainAndTest(trainingData, x, testData, 0)
-        trainingErrorList1.append(errors[0])
-        testErrorList1.append(errors[1])
+        trainingErrorList.append(errors[0])
+        testErrorList.append(errors[1])
 
     # plot plotting training and testing error curves together
     # with tree depth on the x-axis and error on the y-axis
-    tandt.plotErrors(trainingErrorList1, testErrorList1, str(monkNum))
+    tandt.plotErrors(trainingErrorList, testErrorList, str(monkNum))
 
     # Display the Training and Testing Errors
-    tandt.displayTable(trainingErrorList1,testErrorList1)
+    tandt.displayTable(trainingErrorList,testErrorList)
 
-# For part c)
+## For part c)
 
 # Scikit Learn Tree
 from sklearn import tree
 import graphviz
 
-# For part d)
+# create the training data for monks-1
+df = pd.read_csv('./csv/monks-1.train.csv')
+trainingData = []
+trainingData = tandt.createTrainingData(trainingData, df)
+
+# create the test data for monks-1
+df = pd.read_csv('./csv/monks-1.test.csv')
+testData = []
+testData = tandt.createTestData(testData, df)
+
+print('\n\nScikit Learn on Monks-1 Data:')
+labels_Y = [trainingExample.label for trainingExample in trainingData]
+features_X = [trainingExample.featureVector for trainingExample in trainingData]
+
+dtClassifier = tree.DecisionTreeClassifier()
+dtClassifier = dtClassifier.fit(features_X, labels_Y)
+
+# Find the training error
+preds = dtClassifier.predict(features_X)
+
+## For part d)
    
 ## Spect Data
 
