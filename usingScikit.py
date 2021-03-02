@@ -1,7 +1,7 @@
 from sklearn import tree
 import graphviz
 
-def CreateScikitTree(trainingData):
+def CreateScikitTree(trainingData,testData):
   
   # Set the labels and features
   labels_Y = [trainingExample.label for trainingExample in trainingData]
