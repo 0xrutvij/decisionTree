@@ -2,6 +2,10 @@ import pandas as pd
 import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
+import sys
+
+if __name__ == "__main__":
+   sys.stdout = open('output.txt', 'w')
 
 for monkNum in range (1, 4):
     df = pd.read_csv('./csv/monks-'+str(monkNum)+'.train.csv')
@@ -77,3 +81,41 @@ tandt.plotErrors(trainingErrorList1, testErrorList1, '1', SPECTmode=True)
 
 # Display the Training and Testing Errors
 tandt.displayTable(trainingErrorList1,testErrorList1)
+
+# Scikit Learn Tree from SPECT data
+from sklearn import tree
+import graphviz
+print('\n\nScikit Learn on SPECT Data:')
+
+
+labels_Y = [trainingExample.label for trainingExample in trainingData]
+features_X = [trainingExample.featureVector for trainingExample in trainingData]
+
+dtClassifier = tree.DecisionTreeClassifier()
+
+dtClassifier = dtClassifier.fit(features_X, labels_Y)
+
+## Check training errors
+trainErrors = []
+preds = dtClassifier.predict(features_X)
+#print(preds)
+
+for pred, Y in zip(preds, labels_Y):
+    trainErrors.append((pred, Y, pred==Y))
+
+## Check test errors
+test_labels_Y = [trainingExample.label for trainingExample in testData]
+test_features_X = [trainingExample.featureVector for trainingExample in testData]
+preds = dtClassifier.predict(test_features_X)
+#print(preds)
+
+testErrors = []
+for pred, Y in zip(preds, test_labels_Y):
+    testErrors.append((pred, Y, pred==Y))
+
+print("Confusion Matrix:\n")
+errorVals = tandt.findResults(testErrors, 1)
+
+dot_data = tree.export_graphviz(dtClassifier, out_file=None)
+graph = graphviz.Source(dot_data)
+graph.render("./plots/sciSPECT", format="png")

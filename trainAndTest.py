@@ -70,8 +70,8 @@ def findResults(testResult, makeConfusion):
         V |N[FP][TN]      3|4
         '''
 
-        print(TP, '|', FN)
-        print(FP, '|', TN)
+        print(str(TP).rjust(3, '0'), '|', str(FN).rjust(3, '0'))
+        print(str(FP).rjust(3, '0'), '|', str(TN).rjust(3, '0'))
 
     return error
 
