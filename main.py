@@ -7,6 +7,8 @@ import sys
 if __name__ == "__main__":
    sys.stdout = open('output.txt', 'w')
 
+# For parts a) and b)
+   
 for monkNum in range (1, 4):
     df = pd.read_csv('./csv/monks-'+str(monkNum)+'.train.csv')
     trainingData = []
@@ -42,9 +44,14 @@ for monkNum in range (1, 4):
     # Display the Training and Testing Errors
     tandt.displayTable(trainingErrorList1,testErrorList1)
 
+# For part c)
 
+# Scikit Learn Tree
+from sklearn import tree
+import graphviz
 
-
+# For part d)
+   
 ## Spect Data
 
 # create the training data for SPECT
@@ -83,10 +90,7 @@ tandt.plotErrors(trainingErrorList1, testErrorList1, '1', SPECTmode=True)
 tandt.displayTable(trainingErrorList1,testErrorList1)
 
 # Scikit Learn Tree from SPECT data
-from sklearn import tree
-import graphviz
 print('\n\nScikit Learn on SPECT Data:')
-
 
 labels_Y = [trainingExample.label for trainingExample in trainingData]
 features_X = [trainingExample.featureVector for trainingExample in trainingData]
