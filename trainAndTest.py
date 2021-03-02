@@ -106,7 +106,7 @@ def trainAndTest(trainingData, x, testData, makeReport):
 
     return List
 
-# plot plotting training and testing error curves together
+# plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
 def plotErrors(trainingErrorList, testErrorList, monkNum, SPECTmode=False):
     plt.plot(np.arange(1,11,1),trainingErrorList, label = 'Training Error')
@@ -124,6 +124,7 @@ def plotErrors(trainingErrorList, testErrorList, monkNum, SPECTmode=False):
     plt.savefig('plots/'+save_file, bbox_inches='tight')
     plt.show()
 
+# function to display the table of training and test errors per depth
 def displayTable(trainingErrorList,testErrorList):
     trainingErrorList.insert(0, 'Training Error')
     testErrorList.insert(0, 'Test Error')
