@@ -121,8 +121,8 @@ def plotErrors(trainingErrorList, testErrorList, monkNum, SPECTmode=False):
         save_file = 'Monk' + monkNum + '.png'
     plt.title(title)
     plt.legend()
-    plt.show()
     plt.savefig('plots/'+save_file, bbox_inches='tight')
+    plt.show()
 
 def displayTable(trainingErrorList,testErrorList):
     trainingErrorList.insert(0, 'Training Error')

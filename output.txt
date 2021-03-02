@@ -1,45 +1,36 @@
 MONK Problem 1: 
 Decision Tree of Depth 1
 Node value = None
- Feature f5{1, 2, 3, 4}
+ Feature f3{1, 2}
 
 	Node value = 1
 	Label value = 1
 
 	Node value = 2
-	Label value = 0
-
-	Node value = 3
-	Label value = 0
-
-	Node value = 4
 	Label value = 0
 
 
 The Confusion Maxtrix on the Training Set for Depth of  1 :
-29 | 33
-0 | 62
+35 | 27
+30 | 32
 The Confusion Maxtrix on the Test Set for Depth of  1 :
 108 | 108
-0 | 216
+108 | 108
 Decision Tree of Depth 2
 Node value = None
- Feature f5{1, 2, 3, 4}
+ Feature f4{1, 2, 3}
 
 	Node value = 1
-	Label value = 1
-
-	Node value = 2
-	 Feature f3{1, 2}
+	 Feature f6{1, 2}
 
 		Node value = 1
-		Label value = 0
+		Label value = 1
 
 		Node value = 2
-		Label value = 0
+		Label value = 1
 
-	Node value = 3
-	 Feature f2{1, 2, 3}
+	Node value = 2
+	 Feature f1{1, 2, 3}
 
 		Node value = 1
 		Label value = 0
@@ -50,8 +41,8 @@ Node value = None
 		Node value = 3
 		Label value = 0
 
-	Node value = 4
-	 Feature f4{1, 2, 3}
+	Node value = 3
+	 Feature f5{1, 2, 3, 4}
 
 		Node value = 1
 		Label value = 1
@@ -62,22 +53,25 @@ Node value = None
 		Node value = 3
 		Label value = 0
 
+		Node value = 4
+		Label value = 0
+
 
 The Confusion Maxtrix on the Training Set for Depth of  2 :
-34 | 28
-4 | 58
+35 | 27
+16 | 46
 The Confusion Maxtrix on the Test Set for Depth of  2 :
-120 | 96
-24 | 192
---------------  -------  -------  -------  -------  --------  -------  -----  ------  -------  -------
-Depth            1        2        3        4        5         6        7      8       9       10
-Training Error  26.6129  25.8065  23.3871  23.3871   8.06452   0        0      0       0        0
-Test Error      25       27.7778  27.7778  38.8889  27.0833   28.4722  18.75  24.537  19.9074  16.6667
---------------  -------  -------  -------  -------  --------  -------  -----  ------  -------  -------
+108 | 108
+72 | 144
+--------------  -------  -------  -------  -------  --------  ---------  -------  -------  -------  -------
+Depth            1        2        3        4        5         6          7        8        9       10
+Training Error  45.9677  34.6774  24.1935  15.3226   5.64516   0.806452   0        0        0        0
+Test Error      50       41.6667  29.1667  28.0093  21.0648   26.3889    21.5278  18.0556  11.1111  23.6111
+--------------  -------  -------  -------  -------  --------  ---------  -------  -------  -------  -------
 MONK Problem 2: 
 Decision Tree of Depth 1
 Node value = None
- Feature f5{1, 2, 3, 4}
+ Feature f2{1, 2, 3}
 
 	Node value = 1
 	Label value = 0
@@ -86,9 +80,6 @@ Node value = None
 	Label value = 0
 
 	Node value = 3
-	Label value = 0
-
-	Node value = 4
 	Label value = 0
 
 
@@ -103,7 +94,7 @@ Node value = None
  Feature f4{1, 2, 3}
 
 	Node value = 1
-	 Feature f2{1, 2, 3}
+	 Feature f5{1, 2, 3, 4}
 
 		Node value = 1
 		Label value = 0
@@ -114,7 +105,74 @@ Node value = None
 		Node value = 3
 		Label value = 0
 
+		Node value = 4
+		Label value = 0
+
 	Node value = 2
+	 Feature f6{1, 2}
+
+		Node value = 1
+		Label value = 0
+
+		Node value = 2
+		Label value = 0
+
+	Node value = 3
+	 Feature f5{1, 2, 3, 4}
+
+		Node value = 1
+		Label value = 0
+
+		Node value = 2
+		Label value = 1
+
+		Node value = 3
+		Label value = 0
+
+		Node value = 4
+		Label value = 0
+
+
+The Confusion Maxtrix on the Training Set for Depth of  2 :
+9 | 55
+6 | 99
+The Confusion Maxtrix on the Test Set for Depth of  2 :
+13 | 129
+23 | 267
+--------------  -------  -------  -------  -------  -------  -------  ------  -------  -------  ------
+Depth            1        2        3        4        5        6        7       8        9       10
+Training Error  37.8698  36.0947  28.4024  21.3018  10.0592   0        0       0        0        0
+Test Error      32.8704  35.1852  35.6481  36.1111  28.7037  25.2315  25.463  26.1574  25.2315  25.463
+--------------  -------  -------  -------  -------  -------  -------  ------  -------  -------  ------
+MONK Problem 3: 
+Decision Tree of Depth 1
+Node value = None
+ Feature f5{1, 2, 3, 4}
+
+	Node value = 1
+	Label value = 1
+
+	Node value = 2
+	Label value = 1
+
+	Node value = 3
+	Label value = 1
+
+	Node value = 4
+	Label value = 0
+
+
+The Confusion Maxtrix on the Training Set for Depth of  1 :
+59 | 1
+32 | 30
+The Confusion Maxtrix on the Test Set for Depth of  1 :
+228 | 0
+96 | 108
+Decision Tree of Depth 2
+Node value = None
+ Feature f6{1, 2}
+
+	Node value = 1
 	 Feature f3{1, 2}
 
 		Node value = 1
@@ -123,101 +181,31 @@ Node value = None
 		Node value = 2
 		Label value = 0
 
-	Node value = 3
-	 Feature f6{1, 2}
+	Node value = 2
+	 Feature f3{1, 2}
 
 		Node value = 1
-		Label value = 0
+		Label value = 1
 
 		Node value = 2
 		Label value = 0
 
 
 The Confusion Maxtrix on the Training Set for Depth of  2 :
-0 | 64
-0 | 105
+18 | 42
+12 | 50
 The Confusion Maxtrix on the Test Set for Depth of  2 :
-0 | 142
-0 | 290
---------------  -------  -------  -------  -------  --------  -------  -------  -------  -------  -------
-Depth            1        2        3        4        5         6        7        8        9       10
-Training Error  37.8698  37.8698  30.1775  23.6686   8.28402   0        0        0        0        0
-Test Error      32.8704  32.8704  35.1852  35.4167  30.5556   24.0741  26.3889  26.1574  28.4722  25.2315
---------------  -------  -------  -------  -------  --------  -------  -------  -------  -------  -------
-MONK Problem 3: 
-Decision Tree of Depth 1
-Node value = None
- Feature f6{1, 2}
-
-	Node value = 1
-	Label value = 0
-
-	Node value = 2
-	Label value = 1
-
-
-The Confusion Maxtrix on the Training Set for Depth of  1 :
-34 | 26
-29 | 33
-The Confusion Maxtrix on the Test Set for Depth of  1 :
-114 | 114
-102 | 102
-Decision Tree of Depth 2
-Node value = None
- Feature f2{1, 2, 3}
-
-	Node value = 1
-	 Feature f6{1, 2}
-
-		Node value = 1
-		Label value = 1
-
-		Node value = 2
-		Label value = 1
-
-	Node value = 2
-	 Feature f5{1, 2, 3, 4}
-
-		Node value = 1
-		Label value = 1
-
-		Node value = 2
-		Label value = 1
-
-		Node value = 3
-		Label value = 1
-
-		Node value = 4
-		Label value = 0
-
-	Node value = 3
-	 Feature f1{1, 2, 3}
-
-		Node value = 1
-		Label value = 0
-
-		Node value = 2
-		Label value = 0
-
-		Node value = 3
-		Label value = 0
-
-
-The Confusion Maxtrix on the Training Set for Depth of  2 :
-57 | 3
-17 | 45
-The Confusion Maxtrix on the Test Set for Depth of  2 :
-216 | 12
-36 | 168
---------------  ------  -------  --------  --------  --------  -------  -------  -------  -------  -------
-Depth            1       2        3         4         5         6        7        8        9       10
-Training Error  45.082  16.3934   9.01639   9.83607   4.09836   0        0        0        0        0
-Test Error      50      11.1111  12.963    17.3611   15.7407   28.7037  16.4352  24.7685  30.3241  35.4167
---------------  ------  -------  --------  --------  --------  -------  -------  -------  -------  -------
+57 | 171
+51 | 153
+--------------  -------  -------  -------  -------  --------  -------  ------  --  ---------  -------
+Depth            1        2        3        4        5         6        7       8   9         10
+Training Error  27.0492  44.2623  24.5902  13.9344   3.27869   0        0       0   0.819672   0
+Test Error      22.2222  51.3889  29.1667  24.7685  18.0556   28.9352  25.463  25  18.75      22.6852
+--------------  -------  -------  -------  -------  --------  -------  ------  --  ---------  -------
 SPECT Data: 
 Decision Tree of Depth 1
 Node value = None
- Feature f4{0, 1}
+ Feature f20{0, 1}
 
 	Node value = 0
 	Label value = 0
@@ -228,16 +216,16 @@ Node value = None
 
 The Confusion Maxtrix on the Training Set for Depth of  1 :
 13 | 27
-4 | 36
+5 | 35
 The Confusion Maxtrix on the Test Set for Depth of  1 :
-57 | 115
-2 | 13
+67 | 105
+1 | 14
 Decision Tree of Depth 2
 Node value = None
- Feature f11{0, 1}
+ Feature f19{0, 1}
 
 	Node value = 0
-	 Feature f4{0, 1}
+	 Feature f13{0, 1}
 
 		Node value = 0
 		Label value = 0
@@ -246,7 +234,7 @@ Node value = None
 		Label value = 1
 
 	Node value = 1
-	 Feature f16{0, 1}
+	 Feature f8{0, 1}
 
 		Node value = 0
 		Label value = 1
@@ -256,13 +244,13 @@ Node value = None
 
 
 The Confusion Maxtrix on the Training Set for Depth of  2 :
-22 | 18
-7 | 33
+29 | 11
+10 | 30
 The Confusion Maxtrix on the Test Set for Depth of  2 :
-87 | 85
-3 | 12
---------------  -------  -------  -------  -------  ------  -------  -------  -------  -------  -------
-Depth            1        2        3        4        5       6        7        8        9       10
-Training Error  38.75    31.25    36.25    26.25    17.5    20       18.75    16.25    16.25    20
-Test Error      62.5668  47.0588  54.5455  48.6631  31.016  38.5027  46.5241  41.1765  35.2941  47.0588
---------------  -------  -------  -------  -------  ------  -------  -------  -------  -------  -------
+124 | 48
+4 | 11
+--------------  -------  -------  -------  -------  -------  -------  -------  -------  -------  -------
+Depth            1        2        3        4        5        6        7        8        9       10
+Training Error  40       26.25    32.5     27.5     25       25       20       12.5     12.5     13.75
+Test Error      56.6845  27.8075  41.7112  31.5508  46.5241  52.9412  31.5508  37.9679  50.2674  36.8984
+--------------  -------  -------  -------  -------  -------  -------  -------  -------  -------  -------
