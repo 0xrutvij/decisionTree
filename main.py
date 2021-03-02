@@ -3,45 +3,68 @@ import decisionTree as dt
 import auxiliary as ax
 import trainAndTest as tandt
 
-'''
-lst = []
+for monkNum in range (1, 4):
+    df = pd.read_csv('./csv/monks-'+str(monkNum)+'.train.csv')
+    trainingData = []
+    trainingData = tandt.createTrainingData(trainingData, df)
 
-lst.append(trainingExample(1, [1, 2, 3]))
-lst.append(trainingExample(1, [1, 3, 2]))
-lst.append(trainingExample(1, [2, 3, 1]))
-lst.append(trainingExample(1, [2, 1, 3]))
-lst.append(trainingExample(0, [3, 1, 2]))
-lst.append(trainingExample(0, [3, 2, 1]))
-lst.append(trainingExample(0, [1, 2, 3]))
-lst.append(trainingExample(0, [1, 2, 3]))
-lst.append(trainingExample(0, [1, 2, 3]))
-lst.append(trainingExample(0, [1, 2, 3]))
-'''
+    # create the test data for monks-1to3
+    df = pd.read_csv('./csv/monks-'+str(monkNum)+'.test.csv')
+    testData = []
+    testData = tandt.createTestData(testData, df)
 
-## Monks-1
+    trainingErrorList1 = []
+    testErrorList1 = []
 
-# create the training data for monks-1
-df = pd.read_csv('./csv/monks-1.train.csv')
+    # create trees of depth 1 and 2 for monks-1to3
+    print('MONK Problem '+str(monkNum)+': ')
+    for x in range(1,3):
+        # create the trees of various depths
+        errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix and print tree
+        trainingErrorList1.append(errors[0])
+        testErrorList1.append(errors[1])
+
+    # for depth = 3,...,10 create tree for monks-1to3
+    for x in range(3,11):
+        # create the trees of various depths
+        errors = tandt.trainAndTest(trainingData, x, testData, 0)
+        trainingErrorList1.append(errors[0])
+        testErrorList1.append(errors[1])
+
+    # plot plotting training and testing error curves together
+    # with tree depth on the x-axis and error on the y-axis
+    tandt.plotErrors(trainingErrorList1, testErrorList1, str(monkNum))
+
+    # Display the Training and Testing Errors
+    tandt.displayTable(trainingErrorList1,testErrorList1)
+
+
+
+
+## Spect Data
+
+# create the training data for SPECT
+df = pd.read_csv('./spectCSVs/SPECT.train.csv')
 trainingData = []
-trainingData = tandt.createTrainingData(trainingData, df)
+trainingData = tandt.createTrainingData(trainingData, df, SPECTmode=True)
 
-# create the test data for monks-1
-df = pd.read_csv('./csv/monks-1.test.csv')
+# create the test data for SPECT
+df = pd.read_csv('./spectCSVs/SPECT.test.csv')
 testData = []
-testData = tandt.createTestData(testData, df)
+testData = tandt.createTestData(testData, df, SPECTmode=True)
 
 trainingErrorList1 = []
 testErrorList1 = []
 
-# create trees of depth 1 and 2 for monks-1
-print('MONK Problem 1: ')
+# create trees of depth 1 and 2 for SPECT
+print('SPECT Data: ')
 for x in range(1,3):
     # create the trees of various depths
     errors = tandt.trainAndTest(trainingData, x, testData, 1) # create confusion matrix and print tree
     trainingErrorList1.append(errors[0])
     testErrorList1.append(errors[1])
-    
-# for depth = 3,...,10 create tree for monks-1
+
+# for depth = 3,...,10 create tree for SPECT
 for x in range(3,11):
     # create the trees of various depths
     errors = tandt.trainAndTest(trainingData, x, testData, 0)
@@ -50,72 +73,7 @@ for x in range(3,11):
 
 # plot plotting training and testing error curves together
 # with tree depth on the x-axis and error on the y-axis
-tandt.plotErrors(trainingErrorList1, testErrorList1, '1')
-    
+tandt.plotErrors(trainingErrorList1, testErrorList1, '1', SPECTmode=True)
+
 # Display the Training and Testing Errors
 tandt.displayTable(trainingErrorList1,testErrorList1)
-
-
-## Monks-2
-
-# create the training data for monks-2
-df = pd.read_csv('./csv/monks-2.train.csv')
-trainingData = []
-trainingData = tandt.createTrainingData(trainingData, df)
-
-# create the test data for monks-2
-df = pd.read_csv('./csv/monks-2.test.csv')
-testData = []
-testData = tandt.createTestData(testData, df)
-
-trainingErrorList2 = []
-testErrorList2 = []
-
-print('\n'*3)
-
-# for depth = 1,...,10 create tree for monks-2
-print('MONK Problem 2: ')
-for x in range(1,11):
-    # create the trees of various depths
-    errors = tandt.trainAndTest(trainingData, x, testData, 0)
-    trainingErrorList2.append(errors[0])
-    testErrorList2.append(errors[1])
-
-# plot plotting training and testing error curves together
-# with tree depth on the x-axis and error on the y-axis
-tandt.plotErrors(trainingErrorList2, testErrorList2, '2')
-
-# Display the Training and Testing Errors
-tandt.displayTable(trainingErrorList2,testErrorList2)
-
-## Monks-3
-
-# create the training data for monks-3
-df = pd.read_csv('./csv/monks-3.train.csv')
-trainingData = []
-trainingData = tandt.createTrainingData(trainingData, df)
-
-# create the test data for monks-3
-df = pd.read_csv('./csv/monks-3.test.csv')
-testData = []
-testData = tandt.createTestData(testData, df)
-
-trainingErrorList3 = []
-testErrorList3 = []
-
-print('\n'*3)
-
-# for depth = 1,...,10 create tree for monks-3
-print('MONK Problem 3: ')
-for x in range(1,11):
-    # create the trees of various depths
-    errors = tandt.trainAndTest(trainingData, x, testData, 0)
-    trainingErrorList3.append(errors[0])
-    testErrorList3.append(errors[1])
-
-# plot plotting training and testing error curves together
-# with tree depth on the x-axis and error on the y-axis
-tandt.plotErrors(trainingErrorList3, testErrorList3, '3')
-
-# Display the Training and Testing Errors
-tandt.displayTable(trainingErrorList3,testErrorList3)
