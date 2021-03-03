@@ -84,15 +84,8 @@ class decisionTree:
             currNode.isLeaf = True
             return currNode
 
-
-
         #Find the best attribute/feature from the set of attributes/features.
-        """Here's where we need to call the mutual information function/entropy"""
-
-        currFeat = random.choice(featureSet)
-
-        #For now we shall choose a random attribute/feature.
-
+        currFeat = selectFeature(featureSet, data)
         currNode.decidingFeature = currFeat
 
         #create a set of all possible value for that attribute/feature
