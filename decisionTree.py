@@ -85,7 +85,7 @@ class decisionTree:
             return currNode
 
         #Find the best attribute/feature from the set of attributes/features.
-        currFeat = selectFeature(featureSet, data)
+        currFeat = self.selectFeature(featureSet, data)
         currNode.decidingFeature = currFeat
 
         #create a set of all possible value for that attribute/feature
@@ -225,8 +225,9 @@ class decisionTree:
         return retList
     
     
+    @classmethod
     # Use entropy/information gain to select the feature to split on
-    def selectFeature(featureSet, data):
+    def selectFeature(self, featureSet, data):
         
         # Create a list to hold the entropy values
         entropyVals = []
@@ -235,10 +236,12 @@ class decisionTree:
         dataSize = len(data)
         
         # for each feature
-        for currfeat in featureSet:
+        for index in range(0,len(featureSet)):
+
+            currFeat = featureSet[index]
 
             #create a set of all possible values for that attribute/feature
-            currFeatVals = list(set([j.featureVector[currfeat] for j in data]))
+            currFeatVals = list(set([j.currFeat for j in data]))
             
             # Count for how many times each value appears for that feature appears
             valueCounts = []
@@ -259,7 +262,7 @@ class decisionTree:
                 for label in newlabelSet:
                     count = 0
                     if(i.label == label for i in td):
-                        count += 1
+                        count+=1
                     labelCounts.append(count)
 
                 # Calculate the conditional entropies
