@@ -237,10 +237,7 @@ class decisionTree:
         
         # Create a list to hold the entropy values
         entropyVals = []
-        
-        # initiate selected feature
-        selectedFeat = 0
-        
+
         # Number of data points in the current node
         dataSize = len(data)
         
