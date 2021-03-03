@@ -237,6 +237,8 @@ class decisionTree:
         # Create a list to hold the entropy values
         entropyVals = []
         
+        selectedFeat = 0
+        
         # for each feature
         for currfeat in featureSet:
 
@@ -246,12 +248,22 @@ class decisionTree:
             # for each possible value for that attribute/feature
             for x in currFeatVals:
 
-                # create a subset of those data points which have the value x for the Feature
+                # create a subset of the data points which have the value x for the Feature
                 td = ax.filterOn(currFeat, x, data)
+                
+                # determine the new labelSet
+                newlabelSet = list(set([y.label for y in td]))
+                
+                # Count how many times each label appears in the data subset
+                labelCounts = []
+                for label in newlabelSet:
+                    count = 0
+                    if(i.label == label for i in td):
+                        count++
+                    labelCounts.append(count)
 
-                # Count how many times each label appears
-
-                # Calculate the frequency based probabilities
+                # Calculate the entropy 
+                sum = 0
 
         
-        return currFeat
+        return selectedFeat
