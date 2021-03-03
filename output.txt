@@ -223,7 +223,7 @@ Scikit Learn on Monks-1 Data:
 Confusion Matrix for Monks-1 Using Scikit:
 
 216 | 000
-026 | 190
+024 | 192
 
 
 SPECT Data: 
@@ -283,5 +283,5 @@ Test Error      47.0588  37.4332  58.2888  53.4759  54.0107  54.0107  52.4064  4
 Scikit Learn on SPECT Data:
 Confusion Matrix:
 
-113 | 059
+118 | 054
 003 | 012
