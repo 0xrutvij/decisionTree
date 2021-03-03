@@ -277,7 +277,7 @@ class decisionTree:
 
             # calculate the feature's entropy by taking weighted average
             entropyForFeat = 0
-            for k in range(len(currFeatVals)):
+            for k in range(0,len(currFeatVals)):
                 entropyForFeat = entropyForFeat + (valueCounts[k]/dataSize)*conditEntro[k]
 
             # Save the feature's entropy to the list of entropy values
