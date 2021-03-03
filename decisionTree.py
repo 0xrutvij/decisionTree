@@ -259,7 +259,7 @@ class decisionTree:
                 for label in newlabelSet:
                     count = 0
                     if(i.label == label for i in td):
-                        count++
+                        count += 1
                     labelCounts.append(count)
 
                 # Calculate the conditional entropies
