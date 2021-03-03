@@ -241,7 +241,7 @@ class decisionTree:
             currFeat = featureSet[index]
 
             #create a set of all possible values for that attribute/feature
-            currFeatVals = list(set([j.currFeat for j in data]))
+            currFeatVals = list(set([j.featureVector[index] for j in data]))
             
             # Count for how many times each value appears for that feature appears
             valueCounts = []
