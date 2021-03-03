@@ -238,20 +238,28 @@ class decisionTree:
         # Create a list to hold the entropy values
         entropyVals = []
         
+        # initiate selected feature
         selectedFeat = 0
+        
+        # Number of data points in the current node
+        dataSize = len(data)
         
         # for each feature
         for currfeat in featureSet:
 
             #create a set of all possible values for that attribute/feature
             currFeatVals = list(set([j.featureVector[currfeat] for j in data]))
-        
+            
+            # Count for how many times each value appears for that feature appears
+            valueCounts = []
+            
             # for each possible value for that attribute/feature
             conditEntro = []
             for x in currFeatVals:
 
                 # create a subset of the data points which have the value x for the Feature
                 td = ax.filterOn(currFeat, x, data)
+                valueCounts.append(len(td)) # how many data points have that value
                 
                 # determine the new labelSet
                 newlabelSet = list(set([y.label for y in td]))
@@ -266,9 +274,24 @@ class decisionTree:
 
                 # Calculate the conditional entropies
                 sum = 0
-                for labelCount in labelCounts:
+                for labelCount in labelCounts: # for each label
                     prob = labelCount/len(td)
                     sum = sum - prob*math.log(prob,2)
+                
+                # conditional entropies for one value of the feature
+                conditEntro.append(sum)
 
+            # calculate the feature's entropy by taking weighted average
+            entropyForFeat = 0
+            for k in currFeatVals:
+                entropyForFeat = entropyForFeat + (valueCounts[k]/dataSize)*conditEntro[k]
+            
+            # Save the feature's entropy to the list of entropy values
+            entropyVals.append(entropyForFeat)
+          
+        # Now we have the entropy value for each feature, 
+        # The feature with the lowest entropy has the highest information gain
+        selectedFeatIndex = entropyVals.index(min(entropyVals))
+        selectedFeat = featureSet[selectedFeatIndex]
         
         return selectedFeat
