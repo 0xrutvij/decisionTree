@@ -2,6 +2,7 @@ from typing import List
 import random
 from progress.bar import Bar
 import auxiliary as ax
+import math
 
 class decisionTree:
     """docstring for decisionTree."""
@@ -266,7 +267,8 @@ class decisionTree:
                 # Calculate the conditional entropies
                 sum = 0
                 for labelCount in labelCounts:
-                    sum = sum - (labelCount*len(
+                    prob = labelCount/len(td)
+                    sum = sum - prob*math.log(prob,2)
 
         
         return selectedFeat
