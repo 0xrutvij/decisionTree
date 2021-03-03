@@ -35,11 +35,11 @@ Node value = None
 
 
 #### The Confusion Matrix on the Training Set for Depth of  1 :
-048 | 014
-031 | 031
+048 | 014  
+031 | 031  
 #### The Confusion Matrix on the Test Set for Depth of  1 :
-144 | 072
-144 | 072
+144 | 072  
+144 | 072  
 
 #### Decision Tree of Depth 2
 ```
