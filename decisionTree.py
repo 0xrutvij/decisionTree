@@ -13,11 +13,11 @@ class decisionTree:
 
         #the root node
         self.root = None
-        
+
         #a var to hold the list of trainingExamples
         self.trainingData = t #a list of training examples
         self.maxDepth = maxDepth
-        
+
         #since all examples are of the same length, we check the first
         #example in the list to find how many features does our examples have
         self.numFeatures = len(t[0].featureVector)
@@ -27,14 +27,14 @@ class decisionTree:
 
         #the set of features, from 0 through n, stored as a list
         featureSet = list(range(0, self.numFeatures))
-        
+
         #the set of labels, stored as a label. Most often it is 0 and 1
         #but this allows easy extension to multi-class cases
         labelSet = list(set([x.label for x in self.trainingData]))
-        
+
         #a copy of the trainingData
         data = self.trainingData
-        
+
         #a call on the recursive method to start the actual training process
         #starting at the root node.
         self.root = decisionTree.train_rec(data, labelSet, featureSet, self.maxDepth)
@@ -52,7 +52,7 @@ class decisionTree:
 
         #create a list of 0's the size of the label set
         c_list = [0] * len(labelSet_l)
-        
+
         #we zip the list with the list representing the set of labels to form a dict
         labelSet = dict(zip(labelSet_l, c_list))
         #the dict will look something like {label1:0, label2:0}
@@ -99,21 +99,21 @@ class decisionTree:
         for z in currFeatVals:
             #send only those data points which have the value z for the decidingFeature
             td = ax.filterOn(currFeat, z, data)
-            
+
             #create a shallow copy of our set of features
             nfs = featureSet.copy()
-            
+
             #remove the decidingFeature from the set of features left to classify on
             #only for this sub-tree
             nfs.remove(currFeat)
-            
+
             #make a recursive call to the training function
             #params are : td = the filtered training data, labelSet_l = the set of
             #labels/classes, nfs = a modified copy of the feature set,
             #depth = depth reduced by 1 since a node has been added.
             #nodeVal for the child is the decidingFeature's filtered on val
             x = decisionTree.train_rec(td, labelSet_l, nfs, depth-1, nodeVal=z)
-            
+
             #once the recursive call to train returns, we append the child + its
             #sub-tree to the list of children for this node.
             currNode.children.append(x)
@@ -146,7 +146,7 @@ class decisionTree:
         if(node.isLeaf):
             ret = "\t"*level+'Node value = '+str(node.val)+"\n"
             ret += "\t"*level+'Label value = '+str(node.label)+"\n\n"
-        
+
         #else add the node's value, its decidingFeature and the set of values possible
         #for that feature.
         else:
@@ -175,7 +175,7 @@ class decisionTree:
 
             #attribute/feature to filter on is the current node's decidingFeature
             attNo = currNode.decidingFeature
-            
+
             #a copy of the node we begin at.
             startNode = currNode
 
@@ -191,12 +191,12 @@ class decisionTree:
                     #if such a child is found we break and go back to the while loop
                     #and begin our check again.
                     break
-            
+
             #if no such child is found, then our startNode is still the current node
             if(startNode == currNode):
                 #in such a case, we break the while loop.
                 break
-        
+
         #if we have exit the while loop, we return the following info
         return (currNode.label, t.label, currNode.label == t.label)
 
@@ -206,7 +206,7 @@ class decisionTree:
     def testBatch(self, data):
         #a function to test a batch of testExamples
         retList = []
-        
+
         #create a progress bar, it tracks the progress of our batch processing
         bar = Bar('Processing', max=len(data))
 
@@ -217,35 +217,34 @@ class decisionTree:
             retList.append(self.testSingle(t=x, node=root))
             #progress the bar after each example is processed.
             bar.next()
-        
+
         #finish the the bar.
         bar.finish()
-        
+
         #return the results for all examples as a list
         return retList
-    
-    
+
+
     @classmethod
     # Use entropy/information gain to select the feature to split on
     def selectFeature(self, featureSet, data):
-        
         # Create a list to hold the entropy values
         entropyVals = []
 
         # Number of data points in the current node
         dataSize = len(data)
-        
+
         # for each feature
         for index in range(0,len(featureSet)):
 
             currFeat = featureSet[index]
 
             #create a set of all possible values for that attribute/feature
-            currFeatVals = list(set([j.currFeat for j in data]))
-            
+            currFeatVals = list(set([j.featureVector[index] for j in data]))
+
             # Count for how many times each value appears for that feature appears
             valueCounts = []
-            
+
             # for each possible value for that attribute/feature
             conditEntro = []
             for x in currFeatVals:
@@ -253,10 +252,10 @@ class decisionTree:
                 # create a subset of the data points which have the value x for the Feature
                 td = ax.filterOn(currFeat, x, data)
                 valueCounts.append(len(td)) # how many data points have that value
-                
+
                 # determine the new labelSet
                 newlabelSet = list(set([y.label for y in td]))
-                
+
                 # Count how many times each label appears for that feature value
                 labelCounts = []
                 for label in newlabelSet:
@@ -270,21 +269,23 @@ class decisionTree:
                 for labelCount in labelCounts: # for each label
                     prob = labelCount/len(td)
                     sum = sum - prob*math.log(prob,2)
-                
+
                 # conditional entropies for one value of the feature
                 conditEntro.append(sum)
 
+            #print((len(conditEntro) == len(valueCounts)))
+
             # calculate the feature's entropy by taking weighted average
             entropyForFeat = 0
-            for k in currFeatVals:
+            for k in range(len(currFeatVals)):
                 entropyForFeat = entropyForFeat + (valueCounts[k]/dataSize)*conditEntro[k]
-            
+
             # Save the feature's entropy to the list of entropy values
             entropyVals.append(entropyForFeat)
-          
-        # Now we have the entropy value for each feature, 
+
+        # Now we have the entropy value for each feature,
         # The feature with the lowest entropy has the highest information gain
-        selectedFeatIndex = entropyVals.index(min(entropyVals))
-        selectedFeat = featureSet[selectedFeatIndex]
-        
-        return selectedFeat
+            selectedFeatIndex = entropyVals.index(min(entropyVals))
+            selectedFeat = featureSet[selectedFeatIndex]
+
+            return selectedFeat
