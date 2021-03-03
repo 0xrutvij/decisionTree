@@ -246,6 +246,7 @@ class decisionTree:
             currFeatVals = list(set([j.featureVector[currfeat] for j in data]))
         
             # for each possible value for that attribute/feature
+            conditEntro = []
             for x in currFeatVals:
 
                 # create a subset of the data points which have the value x for the Feature
@@ -254,7 +255,7 @@ class decisionTree:
                 # determine the new labelSet
                 newlabelSet = list(set([y.label for y in td]))
                 
-                # Count how many times each label appears in the data subset
+                # Count how many times each label appears for that feature value
                 labelCounts = []
                 for label in newlabelSet:
                     count = 0
@@ -262,8 +263,10 @@ class decisionTree:
                         count++
                     labelCounts.append(count)
 
-                # Calculate the entropy 
+                # Calculate the conditional entropies
                 sum = 0
+                for labelCount in labelCounts:
+                    sum = sum - (labelCount*len(
 
         
         return selectedFeat
