@@ -229,3 +229,29 @@ class decisionTree:
         
         #return the results for all examples as a list
         return retList
+    
+    
+    # Use entropy/information gain to select the feature to split on
+    def selectFeature(featureSet, data):
+        
+        # Create a list to hold the entropy values
+        entropyVals = []
+        
+        # for each feature
+        for currfeat in featureSet:
+
+            #create a set of all possible values for that attribute/feature
+            currFeatVals = list(set([j.featureVector[currfeat] for j in data]))
+        
+            # for each possible value for that attribute/feature
+            for x in currFeatVals:
+
+                # create a subset of those data points which have the value x for the Feature
+                td = ax.filterOn(currFeat, x, data)
+
+                # Count how many times each label appears
+
+                # Calculate the frequency based probabilities
+
+        
+        return currFeat
