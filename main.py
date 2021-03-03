@@ -12,7 +12,7 @@ if __name__ == "__main__":
    sys.stdout = open('output.txt', 'w')
 
 ## For parts a) and b)
-   
+
 for monkNum in range (1, 4):
     df = pd.read_csv('./csv/monks-'+str(monkNum)+'.train.csv')
     trainingData = []
@@ -63,13 +63,13 @@ testData = tandt.createTestData(testData, df)
 # Create tree using scikit and find errors
 print('\n\nScikit Learn on Monks-1 Data:')
 # Create tree and find test error
-testErrors = us.CreateScikitTree(trainingData,testData)
+testErrors = us.CreateScikitTree(trainingData,testData,1)
 
 print("Confusion Matrix for Monks-1 Using Scikit:\n")
 errorVals = tandt.findResults(testErrors, 1)
 
 ## For part d)
-   
+
 ## Spect Data
 
 # create the training data for SPECT
@@ -112,7 +112,7 @@ tandt.displayTable(trainingErrorList1,testErrorList1)
 print('\n\nScikit Learn on SPECT Data:')
 
 # Create tree and find test error
-testErrors = us.CreateScikitTree(trainingData,testData)
+testErrors = us.CreateScikitTree(trainingData,testData,2)
 
 print("Confusion Matrix:\n")
 errorVals = tandt.findResults(testErrors, 1)

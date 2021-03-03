@@ -1,8 +1,8 @@
 from sklearn import tree
 import graphviz
 
-def CreateScikitTree(trainingData,testData):
-  
+def CreateScikitTree(trainingData,testData,mode):
+
   # Set the labels and features
   labels_Y = [trainingExample.label for trainingExample in trainingData]
   features_X = [trainingExample.featureVector for trainingExample in trainingData]
@@ -12,7 +12,7 @@ def CreateScikitTree(trainingData,testData):
 
   # Find the training error
   preds = dtClassifier.predict(features_X)
-  
+
   ## Check training errors
   trainErrors = []
   #print(preds)
@@ -32,6 +32,9 @@ def CreateScikitTree(trainingData,testData):
 
   dot_data = tree.export_graphviz(dtClassifier, out_file=None)
   graph = graphviz.Source(dot_data)
-  graph.render("./plots/sciSPECT", format="png")
-  
+  if mode==2:
+      graph.render("./plots/sciSPECT", format="png")
+  else:
+      graph.render("./plots/sciMonks", format="png")
+
   return testErrors
