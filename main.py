@@ -65,7 +65,7 @@ print('\n\nScikit Learn on Monks-1 Data:')
 # Create tree and find test error
 testErrors = us.CreateScikitTree(trainingData,testData)
 
-print("Confusion Matrix:\n")
+print("Confusion Matrix for Monks-1 Using Scikit:\n")
 errorVals = tandt.findResults(testErrors, 1)
 
 ## For part d)
@@ -86,6 +86,7 @@ trainingErrorList1 = []
 testErrorList1 = []
 
 # create trees of depth 1 and 2 for SPECT
+print('\n')
 print('SPECT Data: ')
 for x in range(1,3):
     # create the trees of various depths
